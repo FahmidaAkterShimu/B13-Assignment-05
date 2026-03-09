@@ -1,13 +1,28 @@
 let allData = [];
 
+const manageSpinner = (status) => {
+    const spinner = document.getElementById("spinner");
+    const container = document.getElementById("issue-container");
+
+    if (status === true) {
+        spinner.classList.remove("hidden");
+        container.classList.add("hidden");
+    } else {
+        spinner.classList.add("hidden");
+        container.classList.remove("hidden");
+    }
+};
+
 const loadIssues = () => {
+    manageSpinner(true);
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
         .then((res) => res.json())
         .then((json) => {
             allData = json.data;
             displayIssues(allData);
             updateCount(allData.length);
-        })
+            manageSpinner(false);
+        });
 };
 
 const loadIssueDetail = async (id) => {
@@ -16,6 +31,7 @@ const loadIssueDetail = async (id) => {
     const details = await res.json();
     displayIssueDetail(details.data);
 };
+
 
 
 // // {
@@ -177,12 +193,15 @@ document.getElementById("btn-search").addEventListener("click", () => {
     const input = document.getElementById("searchInput");
     const searchValue = input.value.trim();
 
+    manageSpinner(true);
+
     fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`)
         .then((res) => res.json())
         .then((data) => {
             const searchResult = data.data;
             displayIssues(searchResult);
             updateCount(searchResult.length);
+            manageSpinner(false);
         })
 });
 
