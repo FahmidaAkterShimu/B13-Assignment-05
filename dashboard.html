@@ -48,14 +48,15 @@
             <div class="flex gap-2 mx-auto">
                 <!-- Search -->
                 <label class="input">
-                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <svg id="btn-search" class="cursor-pointer h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24">
                         <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none"
                             stroke="currentColor">
                             <circle cx="11" cy="11" r="8"></circle>
                             <path d="m21 21-4.3-4.3"></path>
                         </g>
                     </svg>
-                    <input type="search" required placeholder="Search issues..." />
+                    <input id="searchInput" type="search" required placeholder="Search issues..." />
                 </label>
 
                 <!-- button -->
@@ -71,9 +72,9 @@
     <!-- buttons -->
     <section class="max-w-[1110px] mx-auto mt-10 md:mt-[60px] shadow-lg">
         <div class="flex justify-start gap-2 bg-white rounded-lg p-6 mb-4">
-            <button id="all-btn" class="btn btn-base bg-[#4A00FF] text-white">All</button>
-            <button id="open-btn" class="btn btn-base">Open</button>
-            <button id="close-btn" class="btn btn-base">Closed</button>
+            <button class="button btn btn-base bg-[#4A00FF] text-white">All</button>
+            <button class="button btn btn-base">Open</button>
+            <button class="button btn btn-base">Closed</button>
         </div>
     </section>
 
@@ -89,8 +90,8 @@
             <!-- left side -->
             <div class="flex items-center gap-2">
                 <div class=" relative h-[50px] w-[50px] bg-[#ECE4FF] rounded-full">
-                    <img class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 left-1"
-                        src="./assets/Aperture.png" alt="">
+                    <img class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" src="./assets/Aperture.png"
+                        alt="">
                 </div>
                 <div>
                     <h2 class="text-xl font-semibold"><span id="issue-count">50</span> Issues</h2>
@@ -113,10 +114,26 @@
         </div>
 
         <!-- issues card container -->
-        <div id="issue-container" class="grid grid-cols-4 gap-3 bg-[#FBFBFB] rounded-b-lg p-6">
+        <div id="issue-container" class="grid grid-cols-1 md:grid-cols-4 gap-3 bg-[#FBFBFB] rounded-b-lg p-6">
         </div>
 
     </section>
+
+
+
+    <!-- Modal -->
+    <dialog id="issue_modal" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box max-w-2xl p-0 overflow-hidden">
+            <div id="details-container" class="p-8 space-y-6">
+
+            </div>
+            <div class="modal-action p-4 mt-0">
+                <form method="dialog">
+                    <button class="btn bg-[#4A00FF] hover:bg-[#3900D6] text-white border-none px-8">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
 
     <script src="./script/dashboard.js"></script>
 </body>
